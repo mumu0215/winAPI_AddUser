@@ -19,7 +19,7 @@ sub AddUserToGroup {
 popup beacon_bottom{
     item "&Add_user_bypass360"{
         $bid = $1;
-        $dialog = dialog("Add_user_bypass360", %(username => "john", password => "1qa2wszx", group => "Administrators", bid => $bid), &AddUserToGroup);
+        $dialog = dialog("Add_user_bypass360", %(username => "john", password => "1qaz2wsx!@#", group => "Administrators", bid => $bid), &AddUserToGroup);
         drow_text($dialog,"username","UserName: ");
         drow_text($dialog,"password","PassWord: ");
         drow_text($dialog,"group","Group: ");
